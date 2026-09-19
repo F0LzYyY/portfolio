@@ -1,0 +1,314 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
+:root {
+  --color-obsidian: #0A0A0F;
+  --color-ivory: #F5F0E8;
+  --color-bone: #E8E2D6;
+  --color-amber: #C8922A;
+  --color-carbon: #1A1A24;
+  --color-slate: #6B6B7A;
+  --color-mist: #A8A8B3;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+
+  --section-spacing: clamp(80px, 10vw, 160px);
+  --section-spacing-sm: clamp(48px, 6vw, 96px);
+
+}
+
+/* ─────────────────────────────────────────────
+   BASE RESET & GLOBALS
+───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-carbon);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────
+   CUSTOM SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-amber);
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY UTILITIES
+───────────────────────────────────────────── */
+.font-playfair { font-family: var(--font-playfair), Georgia, serif; }
+.font-inter    { font-family: var(--font-inter), system-ui, sans-serif; }
+.font-mono     { font-family: var(--font-dm-mono), monospace; }
+
+/* ─────────────────────────────────────────────
+   LINK HOVER UNDERLINE (draw left to right)
+───────────────────────────────────────────── */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.4s var(--ease-expo);
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION BASE
+───────────────────────────────────────────── */
+.section-padding {
+  padding-top: var(--section-spacing);
+  padding-bottom: var(--section-spacing);
+}
+
+.section-padding-sm {
+  padding-top: var(--section-spacing-sm);
+  padding-bottom: var(--section-spacing-sm);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+}
+
+/* ─────────────────────────────────────────────
+   AMBER ACCENT LINE (blockquotes / testimonials)
+───────────────────────────────────────────── */
+.amber-line {
+  border-left: 2px solid var(--color-amber);
+  padding-left: 24px;
+}
+
+/* ─────────────────────────────────────────────
+   TAG / LABEL (DM Mono style)
+───────────────────────────────────────────── */
+.tag {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+}
+
+/* ─────────────────────────────────────────────
+   BUTTON STYLES
+───────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--color-amber);
+  color: var(--color-ivory);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  background: #b07820;
+  box-shadow: 0 8px 24px rgba(200, 146, 42, 0.35);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--color-ivory);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid rgba(245, 240, 232, 0.3);
+  transition: border-color 0.3s ease, background 0.3s ease;
+  letter-spacing: 0.01em;
+}
+.btn-ghost:hover {
+  border-color: rgba(245, 240, 232, 0.7);
+  background: rgba(245, 240, 232, 0.06);
+}
+.btn-ghost:active {
+  transform: scale(0.97);
+}
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--color-carbon);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid var(--color-bone);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.btn-outline-dark:hover {
+  border-color: var(--color-slate);
+  background: var(--color-bone);
+}
+
+/* ─────────────────────────────────────────────
+   3D HERO OBJECT
+───────────────────────────────────────────── */
+.hero-3d-wrapper {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* ─────────────────────────────────────────────
+   PROJECT CARD TILT
+───────────────────────────────────────────── */
+.card-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease-expo), box-shadow 0.6s var(--ease-expo);
+}
+.card-tilt:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 40px 80px rgba(10, 10, 15, 0.18);
+}
+
+/* ─────────────────────────────────────────────
+   MARQUEE
+───────────────────────────────────────────── */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+}
+.marquee-track {
+  display: flex;
+  gap: 64px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+/* ─────────────────────────────────────────────
+   PROCESS TIMELINE SVG LINE
+───────────────────────────────────────────── */
+.process-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 2s var(--ease-expo);
+}
+.process-line.drawn {
+  stroke-dashoffset: 0;
+}
+
+/* ─────────────────────────────────────────────
+   SELECTION COLOR
+───────────────────────────────────────────── */
+::selection {
+  background: var(--color-amber);
+  color: var(--color-ivory);
+}
+
+/* ─────────────────────────────────────────────
+   FOCUS VISIBLE
+───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   FADE IN ANIMATIONS (scroll-triggered)
+───────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s var(--ease-expo), transform 0.7s var(--ease-expo);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─────────────────────────────────────────────
+   DARK SECTION OVERRIDE (text colors)
+───────────────────────────────────────────── */
+.section-dark {
+  background-color: var(--color-obsidian);
+  color: var(--color-ivory);
+}
+
+/* ─────────────────────────────────────────────
+   FILTER TABS
+───────────────────────────────────────────── */
+.filter-tab {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 2px;
+  border: 1px solid var(--color-bone);
+  color: var(--color-slate);
+  background: transparent;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.filter-tab.active,
+.filter-tab:hover {
+  background: var(--color-carbon);
+  color: var(--color-ivory);
+  border-color: var(--color-carbon);
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE OVERRIDES
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    cursor: auto;
+  }
+  *, *::before, *::after {
+    cursor: auto !important;
+  }
+}
