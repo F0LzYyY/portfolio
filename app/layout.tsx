@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Inter, DM_Mono } from 'next/font/google'
-import CustomCursor from '@/components/ui/CustomCursor'
+
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${playfair.variable} ${inter.variable} ${dmMono.variable}`}>
       <body className="bg-ivory text-carbon antialiased">
-        <CustomCursor />
+
         {children}
       </body>
     </html>
