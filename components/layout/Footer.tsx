@@ -2,11 +2,9 @@ import { siteConfig } from '@/lib/data'
 
 const navLinks = [
   { label: 'Работы', href: '#projects' },
-  { label: 'Процесс', href: '#process' },
   { label: 'О себе', href: '#about' },
-  { label: 'Услуги', href: '#services' },
   { label: 'Контакты', href: '#contact' },
-]
+];
 
 export default function Footer() {
   const year = new Date().getFullYear()

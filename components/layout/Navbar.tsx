@@ -6,11 +6,8 @@ import { siteConfig } from '@/lib/data'
 
 const navLinks = [
   { label: 'Работы', href: '#projects' },
-  { label: 'Процесс', href: '#process' },
   { label: 'О себе', href: '#about' },
-  { label: 'Услуги', href: '#services' },
-]
-
+];
 const ease = [0.16, 1, 0.3, 1] as const
 
 export default function Navbar() {
